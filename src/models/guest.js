@@ -1,7 +1,6 @@
-import crypto from 'crypto';
 import DynamoDb from '../persistence/dynamodb';
 
-const persistence = new DynamoDb('Attendees');
+const persistence = new DynamoDb(process.env.TABLE_NAME);
 
 export default class Guest {
   constructor(name, age) {

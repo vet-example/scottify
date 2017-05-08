@@ -1,4 +1,4 @@
-import Guest from '../../src/models/guest';
+import Guest from '../../models/guest';
 
 module.exports.handler = (event, context, callback) => {
   let name = event.pathParameters.name;
