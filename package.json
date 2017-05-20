@@ -1,15 +1,16 @@
 {
-  "name": "dickson-days",
+  "name": "guest-lambda",
   "version": "1.0.0",
   "description": "",
   "scripts": {
     "build": "babel src --out-dir out",
-    "setup": "sls dynamodb install --stage dev",
-    "dynamodb:start": "sls dynamodb start -p 8000 --migrate true --stage dev",
-    "start": "npm run build && sls offline --stage dev",
+    "setup": "sls dynamodb install",
+    "dynamodb:start": "sls dynamodb start -p 8000 --migrate true",
+    "start": "npm run build && sls offline",
     "test": "mocha --recursive --compilers js:babel-core/register tests",
     "format": "prettier --single-quote --write \"{src,acceptance,tests}/**/*.js\"",
-    "acceptance": "echo 'Acceptance tests run and pass'"
+    "acceptance": "echo 'Acceptance tests run and pass'",
+    "deploy:dev": "npm run build && sls deploy"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

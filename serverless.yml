@@ -1,9 +1,10 @@
-service: dickson-days
+service: guest-lambda
 
 provider:
   name: aws
   runtime: nodejs6.10
   region: eu-west-1
+  stage: ${opt:stage, self:custom.defaultStage}
   environment:
     TABLE_NAME: ${self:resources.Resources.GuestsDB.Properties.TableName}
   iamRoleStatements:
@@ -22,6 +23,7 @@ plugins:
   - serverless-dynamodb-local
 
 custom:
+  defaultStage: dev
   serverless-offline:
     babelOptions:
       presets: ["es2015"]
@@ -70,4 +72,4 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: Attendees-${opt:stage}
+        TableName: Attendees-${self:provider.stage}
